@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aether Luxe</title>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: white;
+    background: radial-gradient(circle at top, #1b1f4b, #050510);
+}
+
+/* ===== BACKGROUND ===== */
+.stars {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(1px 1px at 15% 25%, white, transparent),
+        radial-gradient(1px 1px at 40% 70%, white, transparent),
+        radial-gradient(1px 1px at 65% 35%, white, transparent),
+        radial-gradient(1px 1px at 85% 15%, white, transparent);
+    background-size: 200px 200px;
+    opacity: 0.45;
+    z-index: -2;
+}
+
+.glow {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 15%, rgba(160,150,255,0.3), transparent 60%);
+    z-index: -1;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+}
+
+.logo {
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #f7d774, #d4af37, #fff1b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(212,175,55,0.4);
+    transform: perspective(600px) rotateX(8deg);
+    margin: 0;
+}
+
+nav button {
+    margin: 8px;
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(135deg, #9aa7ff, #c7b9ff);
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    display: none;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+}
+.active { display: block; }
+
+/* ===== CARDS ===== */
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ===== LOGIN ===== */
+input {
+    padding: 12px;
+    width: 260px;
+    border-radius: 14px;
+    border: none;
+    margin: 10px 0;
+}
+
+/* ===== HORIZONTAL TIMELINE ===== */
+.timeline-wrapper {
+    overflow-x: auto;
+    padding-bottom: 30px;
+}
+
+.timeline {
+    display: flex;
+    gap: 40px;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #9aa7ff, #f7d774);
+    border-radius: 10px;
+}
+
+.timeline-item {
+    min-width: 300px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(212,175,55,0.8);
+}
+
+/* ===== SEATS ===== */
+.seats {
+    display: grid;
+    grid-template-columns: repeat(6, 54px);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.seat {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.seat.selected {
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: black;
+    font-weight: bold;
+}
+
+/* ===== BUTTON ===== */
+.action {
+    margin-top: 25px;
+    padding: 12px 28px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="glow"></div>
+
+<header>
+    <h1 class="logo">AETHER LUXE</h1>
+    <p>Luxury beyond Earth</p>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('history')">History</button>
+        <button onclick="showPage('fleet')">Fleet</button>
+    </nav>
+</header>
+
+<!-- LOGIN -->
+<section id="login" class="active">
+    <div class="card">
+        <h2>Member Login</h2>
+        <input placeholder="Username"><br>
+        <input type="password" placeholder="Password"><br>
+        <button class="action" onclick="showPage('home')">Enter Aether Luxe</button>
+    </div>
+</section>
+
+<!-- HOME -->
+<section id="home">
+    <div class="card">
+        <h2>Why Aether Luxe</h2>
+        <p>
+        Aether Luxe blends aerospace innovation with quiet luxury.
+        From curated orbital routes to handcrafted interiors,
+        every mission is designed for comfort, privacy, and wonder.
+        </p>
+    </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+    <h2>History of Spaceflight</h2>
+
+    <div class="timeline-wrapper">
+        <div class="timeline">
+            <div class="timeline-item card">Sputnik 1 (1957)<br>First artificial satellite.</div>
+            <div class="timeline-item card">Vostok 1 (1961)<br>First human in space.</div>
+            <div class="timeline-item card">Mercury-Redstone 3<br>First American in space.</div>
+            <div class="timeline-item card">Gemini Program<br>Docking & EVA missions.</div>
+            <div class="timeline-item card">Apollo 11 (1969)<br>First Moon landing.</div>
+            <div class="timeline-item card">Apollo 13<br>Legendary survival mission.</div>
+            <div class="timeline-item card">Skylab<br>America’s first space station.</div>
+            <div class="timeline-item card">Space Shuttle Era<br>Reusable spacecraft.</div>
+            <div class="timeline-item card">ISS<br>Permanent orbital laboratory.</div>
+            <div class="timeline-item card">Voyager Probes<br>Deep space exploration.</div>
+            <div class="timeline-item card">SpaceX Dragon<br>Commercial spaceflight.</div>
+            <div class="timeline-item card">James Webb Telescope<br>Origins of the universe.</div>
+        </div>
+    </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet">
+    <h2>Luxury Fleet & Pricing</h2>
+    <div class="card" onclick="goToSeats('Nebula Crown')">Nebula Crown — $500,000</div>
+    <div class="card" onclick="goToSeats('Orion Majesty')">Orion Majesty — $450,000</div>
+    <div class="card" onclick="goToSeats('Eclipse Sovereign')">Eclipse Sovereign — $400,000</div>
+    <div class="card" onclick="goToSeats('Celestial Halo')">Celestial Halo — $350,000</div>
+    <div class="card" onclick="goToSeats('Aurora Vantage')">Aurora Vantage — $300,000</div>
+    <div class="card" onclick="goToSeats('Lunar Echo')">Lunar Echo — $100,000</div>
+</section>
+
+<!-- SEATS -->
+<section id="seatsPage">
+    <div class="card">
+        <h2 id="shipName"></h2>
+        <div class="seats" id="seats"></div>
+        <button class="action" onclick="confirmSeat()">Confirm Booking</button>
+    </div>
+</section>
+
+<footer>
+    © 2125 Aether Luxe
+</footer>
+
+<script>
+function showPage(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+/* Fade-in observer */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll(".timeline-item").forEach(item => {
+    observer.observe(item);
+});
+
+function goToSeats(name) {
+    showPage("seatsPage");
+    document.getElementById("shipName").innerText = name;
+    document.getElementById("seats").innerHTML =
+        Array.from({length: 30}, (_, i) =>
+            `<div class="seat" onclick="this.classList.toggle('selected')">${i+1}</div>`
+        ).join("");
+}
+
+function confirmSeat() {
+    alert("Seat confirmed. Welcome aboard Aether Luxe.");
+}
+</script>
+
+</body>
+</html>
